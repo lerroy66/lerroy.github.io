@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htpps:\\tik tok.com</title>
+    <style>
+        video {
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Доступ к камере</h1>
+    <video id="video" autoplay></video>
+    <script>
+        async function startCamera() {
+            try {
+                const constraints = {
+                    video: true,
+                    audio: false // Можно изменить на true для захвата звука
+                };
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                const videoElement = document.getElementById('video');
+                videoElement.srcObject = stream;
+            } catch (error) {
+                console.error("Ошибка доступа к камере:", error);
+                alert("Не удалось получить доступ к камере. Пожалуйста, проверьте настройки браузера.");
+            }
+        }
+
+        startCamera();
+    </script>
+</body>
+</html>
